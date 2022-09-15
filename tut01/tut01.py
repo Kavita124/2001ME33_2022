@@ -73,4 +73,21 @@ while(size>0):
     if size<mod:
         mod = size
         size = 0
-    
+#inserting range and their corresponding data
+t1 = str(x)
+t2= str(y)
+df.at[t+2,'octant ID'] = t1 +'-'+t2 
+df1 = df.loc[x:y] 
+df.at[t+2,'-1'] = df1['octant'].value_counts()[-1]
+df.at[t+2,'1']  = df1['octant'].value_counts()[1]
+df.at[t+2,'-2'] = df1['octant'].value_counts()[-2]
+df.at[t+2,'2']  = df1['octant'].value_counts()[2]
+df.at[t+2,'-3'] = df1['octant'].value_counts()[-3]
+df.at[t+2,'3'] = df1['octant'].value_counts()[3]
+df.at[t+2,'-4'] = df1['octant'].value_counts()[-4]
+df.at[t+2,'4'] = df1['octant'].value_counts()[4]
+
+ t = t + 1
+size = size - mod
+
+df.to_csv("octant_output.csv") #saving the file as output

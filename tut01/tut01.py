@@ -55,3 +55,22 @@ df.at[0,'3'] = df['octant'].value_counts()[3]
 df.at[0,'-3'] = df['octant'].value_counts()[-3]
 df.at[0,'4'] = df['octant'].value_counts()[4]
 df.at[0,'-4'] = df['octant'].value_counts()[-4]
+#asking user for input
+mod = int(input("Enter a value: "))
+df.at[1,'octant ID']=mod
+
+size = len(df['octant'])
+t=0
+#using a while loop to split the data in the given range
+while(size>0):
+    temp = mod
+    if t == 0: #starting from value 0
+        x = 0
+    else:
+        x = t*temp + 1 
+
+    y = t*temp+mod
+    if size<mod:
+        mod = size
+        size = 0
+    

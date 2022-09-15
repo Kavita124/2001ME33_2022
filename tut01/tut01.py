@@ -1,14 +1,27 @@
-def octact_identification(mod=5000):
-###Code
+import pandas as pd 
+import numpy as np
 
-
-from platform import python_version
-ver = python_version()
-
-if ver == "3.8.10":
-    print("Correct Version Installed")
-else:
-    print("Please install 3.8.10. Instruction are present in the GitHub Repo/Webmail. Url: https://pastebin.com/nvibxmjw")
-
-mod=5000
-octact_identification(mod)
+#defining octane  
+def oct(x,y,z):
+    if x>0:
+        if y>0:
+            if z>0: 
+                return 1 #octane 1
+            else :
+                return -1 #octane -1
+        else:
+            if z>0:
+                return 4  #octane 4
+            else :
+                return -4 #octane -4
+    else:
+        if y>0:
+            if z>0:
+                return 2 #octane 2
+            else :
+                return -2 #octane -2
+        else:
+            if z>0:
+                return 3 #octane 3
+            else :
+                return -3 #octane -3

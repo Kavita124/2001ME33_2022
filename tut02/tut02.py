@@ -42,3 +42,47 @@ W_minus_W_mean = (df['W'] - W_mean)
 df["U' = U - U_mean"] = U_minus_U_mean
 df["V' = V - V_mean"] = V_minus_V_mean
 df["W' = W - W_mean"] = W_minus_W_mean
+
+#-----------------------------------------------------
+
+# defining an array that will store the octant values of the points
+octant = []
+
+for i in range(len(df)):
+
+    # if U is +ve
+    if df.loc[i, "U' = U - U_mean"]>0:
+        #if V is +ve
+        if df.loc[i, "V' = V - V_mean"]>0:
+            # perform for W
+            if df.loc[i, "W' = W - W_mean"]>0:
+                octant.append(int(1))
+            else:
+                octant.append(int(-1))
+
+        # if V is -ve
+        else:
+            if df.loc[i, "W' = W - W_mean"]>0:
+                octant.append(int(4))
+            else:
+                octant.append(int(-4))
+
+    #if U is -ve
+    else:
+        #if V is +ve
+        if df.loc[i, "V' = V - V_mean"]>0:
+            # now for W
+            if df.loc[i, "W' = W - W_mean"]>0:
+                octant.append(int(2))
+            else:
+                octant.append(int(-2))
+
+        # if V is -ve
+        else:
+            if df.loc[i, "W' = W - W_mean"]>0:
+                octant.append(int(3))
+            else:
+                octant.append(int(-3))
+
+#now defining new column Octant and assign it values of octant array
+df["Octant"] = octant

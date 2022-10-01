@@ -86,3 +86,15 @@ for i in range(len(df)):
 
 #now defining new column Octant and assign it values of octant array
 df["Octant"] = octant
+
+#--------------------------------------------------
+
+# Printing and tabulating overall octant data
+top_row = ["", "Octant ID", "1", "-1", "2", "-2", "3", "-3", "4", "-4"]
+for i in range(len(top_row)):
+    df.insert(i+11, top_row[i], value="")
+
+df.iloc[0, 12] = "Overall count"
+
+for i in range(8):
+    df.iloc[0, i+13] = octant.count(int(top_row[2+i]))

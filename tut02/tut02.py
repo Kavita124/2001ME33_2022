@@ -98,3 +98,34 @@ df.iloc[0, 12] = "Overall count"
 
 for i in range(8):
     df.iloc[0, i+13] = octant.count(int(top_row[2+i]))
+    
+#--------------------------------------------------
+
+df.iloc[1, 11] = "User input"
+df.iloc[1, 12] = "Mod " + str(mod)
+
+i=0
+k=3
+df.iloc[2,12] = f"{i}-{i+mod-1}"
+i+=mod
+
+while i<len(df):
+    df.iloc[k, 12] = f"{i}-{min(i+mod-1, len(df))}"
+    k+=1
+    i+=mod
+
+
+# chunk size to split the octant array
+chunk_size = mod
+chunked_list = []
+
+for i in range(0, len(octant), chunk_size):
+    chunked_list.append(octant[i:i+chunk_size])
+
+# printing counts at their positions
+for m in range(len(chunked_list)):
+    for j in range(8):
+        df.iloc[m+2, j+13] = chunked_list[m].count(int(top_row[2+j]))
+
+# finally writing output to file
+df.to_csv('octant_output.csv', index=False)

@@ -33,34 +33,34 @@ df.head()
 df.insert(10, column="Octant", value="")
 
 #using loop
-for i in range(0,x):
-    X= df["x'=x - x_avg"][i]
-    Y= df["y'=y - y_avg"][i]
-    Z= df["z'=z - z_avg"][i]
+for i in range(0,u):
+    u= df["x'=x - x_avg"][i]
+    v= df["y'=y - y_avg"][i]
+    w= df["z'=z - z_avg"][i]
     
     
-    if X>0 and Y>0 and Z>0:
+    if u>0 and v>0 and w>0:
         print(1)
         df["Octant"][i] = 1
-    elif X>0 and Y>0 and Z<0:
+    elif u>0 and v>0 and w<0:
         print(-1)
         df["Octant"][i] =-1
-    elif X<0 and Y>0 and Z>0:
+    elif u<0 and v>0 and w>0:
         print(2)
         df["Octant"][i] =2
-    elif X<0 and Y>0 and Z<0:
+    elif u<0 and v>0 and w<0:
         print(-2)
         df["Octant"][i] =-2
-    elif X<0 and Y<0 and Z>0:
+    elif u<0 and v<0 and w>0:
         print(3)
         df["Octant"][i] =3
-    elif X<0 and Y<0 and Z<0:
+    elif u<0 and v<0 and w<0:
         print(-3)
         df["Octant"][i] =-3
-    elif X>0 and Y<0 and Z>0:
+    elif u>0 and v<0 and w>0:
         print(4)
         df["Octant"][i] =4
-    elif X>0 and Y<0 and Z<0:
+    elif u>0 and v<0 and w<0:
         print(-4)
         df["Octant"][i] =-4
 df.to_excel('output_octant_longest_subsequence_with_range.xlsx')
@@ -76,9 +76,9 @@ df.insert(14, column="final_count", value="")
 
  # storing the for count_1(count column name taken as count_1) column in a list
 list=[1,-1, 2, -2, 3,-3, 4,-4]
-y=len(list) #finding the list size
+v=len(list) #finding the list size
 # printing the values in the count_1
-for i in range (0,y):
+for i in range (0,v):
     df.at[i,'Count_1'] = list[i]
 df.head(10)
 
@@ -86,10 +86,10 @@ df.head(10)
 def longest_sequence(n):
     lsc_p1_i=0
     lsc_p1=0
-    for i in range(0,x):
+    for i in range(0,u):
         if(df["Octant"][i]==n):
             lsc_p1=lsc_p1+1
-        if(df["Octant"][i]!=n or i==x-1):
+        if(df["Octant"][i]!=n or i==u-1):
             if(lsc_p1>lsc_p1_i):
                 lsc_p1_i=lsc_p1
                 lsc_p1=0
@@ -99,9 +99,9 @@ def longest_sequence(n):
     return lsc_p1_i
 
 # creating a array(arr_longest_subs_length)to store the longest sequence length of the count_1 value
-arr_longest_subs_length = [0] * y
+arr_longest_subs_length = [0] * v
 # using a loop in which we are calling the longest_sequence function. with the help of this function we are printing the values directly in the output file
-for i in range(0,y):
+for i in range(0,v):
     arr_longest_subs_length[i]=longest_sequence(list[i])
     df.at[i,'Longest Subsquence Length'] = arr_longest_subs_length[i]
 
@@ -109,7 +109,7 @@ for i in range(0,y):
 def final_count_no(m,n):
     cp1=0
     cp1i=0
-    for i in range(0,x):
+    for i in range(0,u):
         if(df["Octant"][i]==n):
             cp1i=cp1i+1
         if(cp1i==m):
@@ -120,9 +120,9 @@ def final_count_no(m,n):
     return cp1
 
 # creating a array(name arr_longest_subs_length_count) to store the no. of sequence count value(final_count column) 
-arr_longest_subs_length_count = [0] * y
+arr_longest_subs_length_count = [0] * v
 # using a loop in which we are calling the final_count_no function. with the help of this function we are printing the values directly to the final_count column
-for i in range(0,y):
+for i in range(0,v):
     arr_longest_subs_length_count[i]=final_count_no(arr_longest_subs_length[i],list[i])
     df.at[i,'final_count'] = arr_longest_subs_length_count[i]
 
@@ -148,7 +148,7 @@ def time_interval(m,n):
     g=c+2
     cp1=0
     cp1i=0
-    for i in range(0,x):
+    for i in range(0,u):
             if(df["Octant"][i]==n):
                 cp1i=cp1i+1
             if(cp1i==m):
@@ -160,10 +160,10 @@ def time_interval(m,n):
             if(df["Octant"][i]!=n):
                 cp1i=0
             
-arr=[0]*y # array(arr) for calling the time function for this loop 
-a=[0]*y   # array(arr) for calling the time_interval function for this loop
+arr=[0]*v # array(arr) for calling the time function for this loop 
+a=[0]*v   # array(arr) for calling the time_interval function for this loop
 c=0
-for i in range(0,y):
+for i in range(0,v):
     arr[i]=time(c,i)
     a[i]=time_interval(arr_longest_subs_length[i],list[i])
     c=c+arr_longest_subs_length_count[i]+2

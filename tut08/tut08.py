@@ -10,7 +10,7 @@ def scorecard():
 with open("teams.txt") as f:
     content_list = f.readlines()
 
-# print the list
+# print the list-----
 print(content_list)
 
 #---------------------

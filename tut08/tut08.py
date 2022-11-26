@@ -440,7 +440,7 @@ for i in range(len(batter_team2)):
     ans=(dic1_run[batter_team2[i]]/dic1_ball[batter_team2[i]])*100
     answer = round(ans, 3)
     SR_team2.append(answer)
-file1 = open(r"C:\Users\YASHASWINI\OneDrive\Documents\GitHub\2001CB18_2022\tut08\score.txt","w+")
+file1 = open(r"C:\Users\kavita Meena\OneDrive\Documents\GitHub\2001ME33_2022\tut08","w+")
 L=[]
 L=["Batters                R     B    4s  6s    SR\n"]
 file1.writelines(L)

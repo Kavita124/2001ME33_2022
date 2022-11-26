@@ -14,7 +14,7 @@ start_time = datetime.now()
 import os
 
 
-thin_border = Border(left=Side(style='thin'),                   # Defining border
+thin_border = Border(left=Side(style='thin'),                   # Defining ------
 					right=Side(style='thin'), 
 					top=Side(style='thin'), 
 					bottom=Side(style='thin'))
